@@ -3,7 +3,7 @@ const dao = require('../db/tweets/tweet-dao');
 
 module.exports = (app) => {
 
-    //A8
+    /*//A8
     const findAllTweets = (req, res) => {
         res.json(tweets);
     }
@@ -68,7 +68,7 @@ module.exports = (app) => {
     app.get('/api/tweets', findAllTweets);
     app.post('/api/tweets', postNewTweet);
     app.delete('/api/tweets/:id', deleteTweet);
-    app.put('/api/tweets/:id/like', likeTweet);
+    app.put('/api/tweets/:id/like', likeTweet);*/
 
     //A9
     const findAllTweetsA9 = (req, res) => {
@@ -130,10 +130,10 @@ module.exports = (app) => {
     //Prof said in office hours that we can change the api endpoints for A9 so it does not break A8 since A9 and A8
     // used same endpoints. This way A8 can still use json for data storage and A9 can use database for data storage.
     // As a result, when deployed to heroku and netlify, A8 will will not break and will not be overridden by A9
-    app.get('/rest/tweets', findAllTweetsA9);
-    app.post('/rest/tweets', createTweet);
-    app.delete('/rest/tweets/:id', deleteTweetA9);
-    app.put('/rest/tweets/:id/like', likeTweetA9);
+    app.get('/tweets', findAllTweetsA9);
+    app.post('/tweets', createTweet);
+    app.delete('/tweets/:id', deleteTweetA9);
+    app.put('/tweets/:id/like', likeTweetA9);
 };
 
 

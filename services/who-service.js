@@ -6,6 +6,6 @@ module.exports = (app) => {
         dao.findAllWho()
             .then(who => res.json(who));
     }
-    app.get('/rest/who', findAllWho);
+    app.get('/who', findAllWho);
 
 };

@@ -3,7 +3,7 @@ const dao = require('../db/profile/profile-dao');
 
 module.exports = (app) => {
 
-    // A8
+    /*// A8
     const getCurrentProfile = (req, res) => {
         res.json(profile);
     }
@@ -23,20 +23,20 @@ module.exports = (app) => {
         });
         res.sendStatus(200);
     }
-    app.put('/api/profile', updateCurrentProfile);
+    app.put('/api/profile', updateCurrentProfile);*/
 
     // A9
     const findProfileById = (req, res) => {
         dao.findProfileById({_id : '61981fcddf5f55eebd87bf80'}) //only one profile in profiles collection
             .then(prof => res.json(prof));
     }
-    app.get('/rest/profile', findProfileById);
+    app.get('/profile/get', findProfileById);
 
     // A9
     const updateProfile = (req, res) => {
         dao.updateProfile(req.params.id, req.body)
             .then((status) => res.send(status));
     }
-    app.put('/rest/profile/:id', updateProfile);
+    app.put('/profile/:id', updateProfile);
 
 };
