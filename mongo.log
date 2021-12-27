@@ -1,0 +1,176 @@
+PRACTICE A9 - mongo logging
+
+show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+use webdev
+switched to db webdev
+
+db.movies.insert({title:'Aliens', rating:4.5})
+WriteResult({ "nInserted" : 1 })
+
+show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+webdev  0.000GB
+
+db.movies.insert({title: 'Terminator', rating: 4.8})
+WriteResult({ "nInserted" : 1 })
+db.movies.insert({title: 'Avatar', rating: 4.7})
+WriteResult({ "nInserted" : 1 })
+db.movies.insert({title: 'Dune', rating: 4.9})
+WriteResult({ "nInserted" : 1 })
+
+db.movies.find()
+{ "_id" : ObjectId("6195237d04aff62c8f967954"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("61952971f919e234fbce0be3"), "title" : "Terminator", "rating" : 4.8 }
+{ "_id" : ObjectId("619529c0f919e234fbce0be4"), "title" : "Avatar", "rating" : 4.7 }
+{ "_id" : ObjectId("619529def919e234fbce0be5"), "title" : "Dune", "rating" : 4.9 }
+
+db.movies.find({_id: ObjectId("6195237d04aff62c8f967954")})
+{ "_id" : ObjectId("6195237d04aff62c8f967954"), "title" : "Aliens", "rating" : 4.5 }
+
+db.movies.find({title: 'Aliens'})
+{ "_id" : ObjectId("6195237d04aff62c8f967954"), "title" : "Aliens", "rating" : 4.5 }
+
+db.movies.find().pretty()
+{
+        "_id" : ObjectId("6195237d04aff62c8f967954"),
+        "title" : "Aliens",
+        "rating" : 4.5
+}
+{
+        "_id" : ObjectId("61952971f919e234fbce0be3"),
+        "title" : "Terminator",
+        "rating" : 4.8
+}
+{
+        "_id" : ObjectId("619529c0f919e234fbce0be4"),
+        "title" : "Avatar",
+        "rating" : 4.7
+}
+{
+        "_id" : ObjectId("619529def919e234fbce0be5"),
+        "title" : "Dune",
+        "rating" : 4.9
+}
+
+db.movies.updateOne({title : "Avatar"}, {$set : {rating : 4.9}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+db.movies.updateOne({_id :  ObjectId("61952971f919e234fbce0be3")}, {$set : {rating : 4.9}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+db.movies.deleteOne({_id : ObjectId("619529def919e234fbce0be5")})
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+db.movies.find()
+{ "_id" : ObjectId("6195237d04aff62c8f967954"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("61952971f919e234fbce0be3"), "title" : "Terminator", "rating" : 4.9 }
+{ "_id" : ObjectId("619529c0f919e234fbce0be4"), "title" : "Avatar", "rating" : 4.9 }
+
+------------------------------------------------------------------------------------------------
+BELOW ARE FOR REFERENCE PURPOSES (copy/paste to db if deleted). INSERTED INTO DB FOR BUILD/CHALLENGE
+
+Inserting the tweets in /data/tweets.json in the Node application into the database, in a new collection called tweets
+
+db.tweets.insert({
+    topic: "Space",
+    avatar_image: "/images/elon_twitter_image.jpg",
+    userName: "Elon Musk",
+    verified: true,
+    handle: "elonmusk",
+    time: "23h",
+    tweet: "Amazing show about <a class=\"wd-text-no-underline\" href=\"#\">@inspiration4x</a> mission!",
+    tweet_image: "/images/netflix_inspiration4.jpg",
+    tweet_link_title: "Countdown: Inspiration4 Mission to Space | Netflix Official Site",
+    tweet_link_description: "From training to launch to landing, this all-access docuseries rides along with the inspiration4 crew on the first all-civilian orbital space...",
+    tweet_link_url: "netflix.com",
+    stats: {
+     comments: 235,
+     retweets: 477,
+     likes: 989
+    },
+    liked: false
+});
+
+db.tweets.insert({
+    topic: "Celebrity",
+    avatar_image: "/images/nyp_logo.jpg",
+    userName: "New York Post",
+    verified: true,
+    handle: "nypost",
+    time: "23h",
+    tweet: "Grimes seen reading Karl Marx following split with world's richest man Elon Musk <a class=\"wd-text-no-underline\" href=\"#\">trib.al/nx2GFaq</a>",
+    tweet_image: "/images/grimes_nyp.jpg",
+    tweet_link_title: "",
+    tweet_link_description: "",
+    tweet_link_url: "",
+    stats: {
+     comments: 28,
+     retweets: 113,
+     likes: 456
+    },
+    liked: false
+});
+
+Inserting WhoToFollow json in the react application into the database, in a new collection called who
+
+db.who.insert({
+    avatarIcon: "/images/java_logo.png",
+    userName: "Java",
+    handle: "Java"
+});
+
+db.who.insert({
+    avatarIcon: "/images/relativity_space_logo.jpg",
+    userName: "Relativity Space",
+    handle: "relativityspace"
+});
+
+db.who.insert({
+    avatarIcon: "/images/virgin_logo.png",
+    userName: "Virgin Galactic",
+    handle: "virgingalactic"
+});
+
+db.who.insert({
+    avatarIcon: "/images/nasa-logo.jpg",
+    userName: "NASA",
+    handle: "NASA"
+});
+
+db.who.insert({
+    avatarIcon: "/images/tesla_logo.png",
+    userName: "Tesla",
+    handle: "Tesla"
+});
+
+db.who.insert({
+    avatarIcon: "/images/java_logo.png",
+    userName: "TestWho",
+    handle: "TestWho"
+});
+
+Inserting the tweets in /data/profile.json in the Node application into the database, in a new collection called
+profiles
+
+db.profiles.insert({
+    firstName: "Elon",
+    lastName: "Musk",
+    handle: "elonmusk",
+    profilePicture: "/images/elon_twitter_image.jpg",
+    bannerPicture: "/images/space_dragon.jpg",
+    bio: "I work on a couple of things: SpaceX, Tesla, Boring Company, Neuralink, OpenAI",
+    website: "www.tesla.com",
+    location: "Earth",
+    dateOfBirth: "1971-06-28",
+    dateJoined: "June 2009",
+    followingCount: "105",
+    followersCount: "62.1M"
+});
+
+

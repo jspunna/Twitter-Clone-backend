@@ -1,0 +1,16 @@
+[
+  {
+    "firstName": "Elon",
+    "lastName": "Musk",
+    "handle": "elonmusk",
+    "profilePicture": "/images/elon_twitter_image.jpg",
+    "bannerPicture": "/images/space_dragon.jpg",
+    "bio": "I work on a couple of things: SpaceX, Tesla, Boring Company, Neuralink, OpenAI",
+    "website": "www.tesla.com",
+    "location": "Earth",
+    "dateOfBirth": "1971-06-28",
+    "dateJoined": "June 2009",
+    "followingCount": "105",
+    "followersCount": "62.1M"
+  }
+]
