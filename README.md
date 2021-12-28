@@ -11,4 +11,3 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## If in development mode....
 ### `node server.js`
 This will run the server in the development mode.\
-Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
