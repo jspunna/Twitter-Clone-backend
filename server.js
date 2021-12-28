@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/webdev',
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/twitter-clone',
     { useUnifiedTopology: true, useNewUrlParser: true });
 
 /*mongoose.connection.once("connected", function() {
@@ -28,6 +28,5 @@ app.get('/hello', (req,res) => {
 require('./services/tweeter-service')(app);
 require('./services/profile-service')(app);
 require('./services/who-service')(app);
-require('./movies/service')(app);
 
 app.listen(process.env.PORT || 4000);
